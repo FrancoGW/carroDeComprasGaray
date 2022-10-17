@@ -5,20 +5,24 @@ const contenedorCarrito = document.getElementById('contenedor-carrito');
 const precioTotal = document.getElementById('precioToal');
 
 
-let stockProductos = [
-  {id:1, nombre: "GPRO", cantidad: 1, desc: 'El mejor del mercado', precio: 10500,img:'./assets/img/mouse.webp'},
-  {id:2, nombre: "RAZER", cantidad: 1, desc: 'El mejor del mercado', precio: 20500,img:'./assets/img/teclado.webp'},
-  {id:3, nombre: "SAMSUNG", cantidad: 1, desc: 'El mejor del mercado', precio: 70000,img:'./assets/img/monitor.webp'},
-  {id:4, nombre: "RTX 3090", cantidad: 1, desc: 'El mejor del mercado', precio: 700000,img:'./assets/img/rtx.webp'},
-  {id:5, nombre: "PC GAMER", cantidad: 1, desc: 'El mejor del mercado', precio: 250000,img:'./assets/img/pc-completa.png'},
-  {id:6, nombre: "NOTEBOOK GAMER", cantidad: 1, desc: 'El mejor del mercado', precio: 175000,img:'./assets/img/notebook-gamer.jpeg'},
-  {id:7, nombre: "ASTROS", cantidad: 1, desc: 'El mejor del mercado', precio: 30000,img:'./assets/img/astros.png'},
-  {id:8, nombre: "MOUSEPAD", cantidad: 1, desc: 'El mejor del mercado', precio: 1000,img:'./assets/img/mousepad.png'},
-  {id:9, nombre: "SILLA", cantidad: 1, desc: 'El mejor del mercado', precio: 90500,img:'./assets/img/silla.png'},
-  {id:10, nombre: "PLACA MADRE", cantidad: 1, desc: 'El mejor del mercado', precio: 20500,img:'./assets/img/placa-madre.png'},
-  
+// let stockProductos = [
+//   {id:1, nombre: "GPRO", cantidad: 1, desc: 'El mejor del mercado', precio: 10500,img:'./assets/img/mouse.webp'},
+//   {id:2, nombre: "RAZER", cantidad: 1, desc: 'El mejor del mercado', precio: 20500,img:'./assets/img/teclado.webp'},
+//   {id:3, nombre: "SAMSUNG", cantidad: 1, desc: 'El mejor del mercado', precio: 70000,img:'./assets/img/monitor.webp'},
+//   {id:4, nombre: "RTX 3090", cantidad: 1, desc: 'El mejor del mercado', precio: 700000,img:'./assets/img/rtx.webp'},
+//   {id:5, nombre: "PC GAMER", cantidad: 1, desc: 'El mejor del mercado', precio: 250000,img:'./assets/img/pc-completa.png'},
+//   {id:6, nombre: "NOTEBOOK GAMER", cantidad: 1, desc: 'El mejor del mercado', precio: 175000,img:'./assets/img/notebook-gamer.jpeg'},
+//   {id:7, nombre: "ASTROS", cantidad: 1, desc: 'El mejor del mercado', precio: 30000,img:'./assets/img/astros.png'},
+//   {id:8, nombre: "MOUSEPAD", cantidad: 1, desc: 'El mejor del mercado', precio: 1000,img:'./assets/img/mousepad.png'},
+//   {id:9, nombre: "SILLA", cantidad: 1, desc: 'El mejor del mercado', precio: 90500,img:'./assets/img/silla.png'},
+//   {id:10, nombre: "PLACA MADRE", cantidad: 1, desc: 'El mejor del mercado', precio: 20500,img:'./assets/img/placa-madre.png'},
+// ];
 
-];
+
+let productos 
+
+
+
 let carrito = [];
 document.addEventListener('DOMContentLoaded', () =>{
   if(localStorage.getItem('carrito')){
@@ -31,6 +35,7 @@ function cargarProductos(){
   fetch('js/stockProductos.json')
       .then(respuesta => respuesta.json())
       .then(stockProductos => {
+        productos = stockProductos
             stockProductos.forEach((producto)=>{
             const div = document.createElement('div')
             div.classList.add('producto')
@@ -69,7 +74,7 @@ const agregarAlCarrito = (prodId) => {
       }
     })
   }else{
-    const item = stockProductos.find((prod)=> prod.id === prodId)
+    const item = productos.find((prod)=> prod.id === prodId)
     carrito.push(item)
     console.log(carrito)
   }
