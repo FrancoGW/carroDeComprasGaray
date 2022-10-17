@@ -26,27 +26,35 @@ document.addEventListener('DOMContentLoaded', () =>{
     actualizarCarrito()
   }
 })
+function cargarProductos(){
+  fetch('js/stockProductos.json')
+      .then(respuesta => respuesta.json())
+      .then(stockProductos => {
+            stockProductos.forEach((producto)=>{
+            const div = document.createElement('div')
+            div.classList.add('producto')
+            div.innerHTML = `
+            <div class="img">
+            
+            <img src=${producto.img} alt="">
+            </div>
+            <h3>${producto.nombre}</h3>
+            <p>${producto.desc}</p>
+            <p class="precioProducto">Precio:$ ${producto.precio}</p>
+            <button id="agregar${producto.id}" class="botonAgregar">Comprar</button>
+            `
+            contenedorProductos.appendChild(div);
 
-stockProductos.forEach((producto)=>{
-  const div = document.createElement('div')
-  div.classList.add('producto')
-  div.innerHTML = `
-  <div class="img">
-  
-  <img src=${producto.img} alt="">
-  </div>
-  <h3>${producto.nombre}</h3>
-  <p>${producto.desc}</p>
-  <p class="precioProducto">Precio:$ ${producto.precio}</p>
-  <button id="agregar${producto.id}" class="botonAgregar">Comprar</button>
-  `
-  contenedorProductos.appendChild(div);
-
-  const boton = document.getElementById(`agregar${producto.id}`)
-  boton.addEventListener('click', () => {
-    agregarAlCarrito(producto.id)
+            const boton = document.getElementById(`agregar${producto.id}`)
+            boton.addEventListener('click', () => {
+              agregarAlCarrito(producto.id)
+            })
+           })
   })
-})
+}       
+
+cargarProductos();
+
 const agregarAlCarrito = (prodId) => {
 
   const existe = carrito.some (prod => prod.id === prodId)

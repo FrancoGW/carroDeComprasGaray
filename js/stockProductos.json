@@ -1,4 +1,3 @@
-
 [
     {"id":1, "nombre": "GPRO", "cantidad": 1, "desc": "El mejor del mercado", "precio": 10500,"img":"./assets/img/mouse.webp"},
     {"id":2, "nombre": "RAZER", "cantidad": 1, "desc": "El mejor del mercado", "precio": 20500,"img":"./assets/img/teclado.webp"},
@@ -10,7 +9,6 @@
     {"id":8, "nombre": "MOUSEPAD", "cantidad": 1, "desc": "El mejor del mercado", "precio": 700000,"img":"./assets/img/mousepad.png"},
     {"id":9, "nombre": "SILLA", "cantidad": 1, "desc": "El mejor del mercado", "precio": 10500,"img":"./assets/img/silla.png"},
     {"id":10,"nombre": "PLACA MADRE", "cantidad": 1, "desc": "El mejor del mercado", "precio": 20500,"img":"./assets/img/placa-madre.png"}
-    
   
   ]
 
